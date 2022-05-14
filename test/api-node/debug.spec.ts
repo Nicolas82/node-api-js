@@ -1,7 +1,7 @@
 import {NODE_URL, STATE, CHAIN_ID} from '../_state';
 import {create} from '../../src';
 import {invokeScript, waitForTx, broadcast, transfer, libs} from '@waves/waves-transactions';
-import {InvokeScriptTransaction} from "@waves/ts-types";
+import {InvokeScriptTransaction} from "@apsiocoin/ts-types";
 import {TLong} from "../../src/interface";
 import {TWithState} from "../../src/tools/transactions/transactions";
 

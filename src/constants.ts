@@ -13,7 +13,8 @@ export const TYPE_MAP = {
     14: 'sponsorship' as 'sponsorship',
     15: 'setAssetScript' as 'setAssetScript',
     16: 'invoke' as 'invoke',
-    17: 'updateAsset' as 'updateAsset'
+    17: 'updateAsset' as 'updateAsset',
+    18: 'diplomaCampaign' as 'diplomaCampaign',
 };
 
 export const NAME_MAP = {
@@ -31,7 +32,8 @@ export const NAME_MAP = {
     'sponsorship': 14 as 14,
     'setAssetScript': 15 as 15,
     'invoke': 16 as 16,
-    'updateAsset': 17 as 17
+    'updateAsset': 17 as 17,
+    'diplomaCampaign': 18 as 18,
 };
 
 export const TRANSACTION_STATUSES = {

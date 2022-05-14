@@ -12,6 +12,7 @@ import * as activationModule from './api-node/activation';
 import * as nodeModule from './api-node/node';
 import * as assetsModule from './api-node/assets';
 import * as ethModule from './api-node/eth';
+import * as diplomesModule from './api-node/diplomes';
 import query from './tools/query';
 import resolve from './tools/resolve';
 import request from './tools/request';
@@ -26,7 +27,7 @@ import getNetworkByte from './tools/blocks/getNetworkByte';
 import getNetworkCode from './tools/blocks/getNetworkCode';
 import createWatch from './tools/adresses/watch';
 import * as toolsUtilsModule from './tools/utils';
-import {Transaction, TransactionMap, WithApiMixin} from '@waves/ts-types';
+import {Transaction, TransactionMap, WithApiMixin} from '@apsiocoin/ts-types';
 import {TLong} from './interface';
 
 declare function broadcastWrapped<T extends Array<Transaction<TLong>>>(list: T, options?: Partial<IOptions>): Promise<TMapTuple<T, TransactionMap<TLong>, 'type'> & WithApiMixin>;
@@ -52,6 +53,7 @@ export function create(base: string) {
     const node: TWrapRecord<typeof nodeModule> = wrapRecord(base, nodeModule);
     const assets: TWrapRecord<typeof assetsModule> = wrapRecord(base, assetsModule);
     const eth: TWrapRecord<typeof ethModule> = wrapRecord(base, ethModule);
+    const diplomes: TWrapRecord<typeof diplomesModule> = wrapRecord(base, diplomesModule);
 
     const tools = {
         transactions: {

@@ -1,4 +1,4 @@
-import { DataTransactionEntry, ExchangeTransactionOrder, TransactionMap } from '@waves/ts-types';
+import { DataTransactionEntry, ExchangeTransactionOrder, TransactionMap } from '@apsiocoin/ts-types';
 
 type TGetLongKeys<T> = {
     [Key in keyof T]: T[Key] extends 'LONG' ? Key : T[Key] extends Record<'string', any> ? TGetLongKeys<T[Key]> : never;

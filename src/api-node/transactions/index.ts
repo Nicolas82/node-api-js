@@ -5,7 +5,7 @@ import request, {RequestInit} from '../../tools/request';
 import query from '../../tools/query';
 import {deepAssign} from '../../tools/utils';
 import stringify from '../../tools/stringify';
-import {SignedTransaction, Transaction, TransactionMap, WithApiMixin} from '@waves/ts-types';
+import {SignedTransaction, Transaction, TransactionMap, WithApiMixin} from '@apsiocoin/ts-types';
 import {addStateUpdateField, TTransaction} from "../../tools/transactions/transactions";
 
 

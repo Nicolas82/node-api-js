@@ -23,6 +23,7 @@ export type TRANSACTION_TYPE_MAP = {
     14: 'sponsorship';
     15: 'setAssetScript';
     16: 'invoke';
+    18: 'diplomaCampaign';
 };
 
 export type TRANSACTION_NAME_MAP = {
@@ -40,6 +41,7 @@ export type TRANSACTION_NAME_MAP = {
     sponsorship: 14;
     setAssetScript: 15;
     invoke: 16;
+    diplomaCampaign: 18;
 };
  
 //TODO move to ts-types

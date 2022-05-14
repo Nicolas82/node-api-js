@@ -1,4 +1,4 @@
-import { TransactionMap, Transaction } from '@waves/ts-types';
+import { TransactionMap, Transaction } from '@apsiocoin/ts-types';
 import { TLong } from '../interface';
 
 export function isObject(obj: any) {

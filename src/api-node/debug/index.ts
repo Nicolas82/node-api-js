@@ -1,7 +1,7 @@
 import request from '../../tools/request';
 import {TLong} from '../../interface';
 import query from '../../tools/query';
-import {AssetDecimals, DataTransactionEntry, Transaction, WithId} from '@waves/ts-types';
+import {AssetDecimals, DataTransactionEntry, Transaction, WithId} from '@apsiocoin/ts-types';
 
 /**
  * Waves balance history
@@ -42,6 +42,13 @@ export type TStateChanges = {
         isReissuable: boolean,
         compiledScript: null | string,
         nonce: TLong
+    }[],
+    diplomes: {
+        assetId: string,
+        sender: string,
+        recipient: string,
+        name: string,
+        description: string
     }[],
     reissues: {
         assetId: string,

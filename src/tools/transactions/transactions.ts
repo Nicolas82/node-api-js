@@ -3,12 +3,12 @@ import {BigNumber} from "@waves/bignumber";
 import {
     AssetDecimals,
     DataTransactionEntry,
+    DiplomaCampaignTransaction,
     InvokeExpressionTransaction,
-    EthereumTransaction,
     TRANSACTION_TYPE,
     WithApiMixin
-} from "@waves/ts-types/";
-import {Long} from "@waves/ts-types/";
+} from "@apsiocoin/ts-types/";
+import {Long} from "@apsiocoin/ts-types/";
 import {
     AliasTransaction,
     BurnTransaction, CancelLeaseTransaction, DataTransaction, ExchangeTransaction,
@@ -16,7 +16,7 @@ import {
     IssueTransaction, LeaseTransaction, MassTransferTransaction,
     PaymentTransaction, ReissueTransaction, SetAssetScriptTransaction, SetScriptTransaction, SponsorshipTransaction,
     TransferTransaction, UpdateAssetInfoTransaction
-} from "@waves/ts-types/";
+} from "@apsiocoin/ts-types/";
 import {IWithApplicationStatus, TLong} from "../../interface";
 import any = jasmine.any;
 
@@ -38,6 +38,13 @@ export type TStateUpdate = {
         isReissuable: boolean,
         compiledScript: null | string,
         nonce: number
+    }[],
+    diplomes: {
+        assetId: string,
+        sender: string,
+        recipient: string,
+        name: string,
+        description: string
     }[],
     reissues: {
         address: string,
@@ -87,7 +94,8 @@ export type TTransaction<LONG = Long> =
     | (InvokeScriptTransaction<LONG> & TWithState)
     | UpdateAssetInfoTransaction<LONG>
     | (InvokeExpressionTransaction<LONG> & TWithState)
-    | EthereumTransaction<LONG>;
+    | DiplomaCampaignTransaction<LONG>;
+
 
 
 export function addStateUpdateField(transaction: TTransaction & WithApiMixin & IWithApplicationStatus): TTransaction & WithApiMixin & IWithApplicationStatus {
@@ -96,16 +104,9 @@ export function addStateUpdateField(transaction: TTransaction & WithApiMixin & I
             assetId: p.assetId,
             amount: p.amount
         })) : []
-
-     } if (transaction.type === TRANSACTION_TYPE.ETHEREUM && transaction.payload.type === 'invocation' && transaction.payload.stateChanges.invokes && transaction.payload.stateChanges.invokes.length) {
-        const payments = transaction.payload.payment ? transaction.payload.payment.map((p: TPayment) => ({
-            assetId: p.assetId,
-            amount: p.amount
-        })) : []
-        const dApp = transaction.payload.dApp || ''
-        // @ts-ignore
-        return Object.defineProperty(transaction, 'stateUpdate', {get: () => makeStateUpdate(transaction.payload.stateChanges, payments, dApp, transaction.sender)})
-    } else return transaction
+        //@ts-ignore
+        return Object.defineProperty(transaction, 'stateUpdate', {get: () => makeStateUpdate(transaction.stateChanges, payments, transaction.dApp, transaction.sender)})
+     }else return transaction
 }
 
 export function makeStateUpdate(stateChanges: TStateChanges, payment: TPayment[], dApp: string | undefined, sender: string): TStateUpdate {
@@ -114,6 +115,7 @@ export function makeStateUpdate(stateChanges: TStateChanges, payment: TPayment[]
     const transfers = addField(stateChanges.transfers, 'sender')
     const leases = addField(stateChanges.leases, 'sender')
     const issues = addField(stateChanges.issues, 'address')
+    const diplomes = addField(stateChanges.diplomes, 'address');
     const data = addField(stateChanges.data, 'address')
     const reissues = addField(stateChanges.reissues, 'address')
     const burns = addField(stateChanges.burns, 'address')
@@ -130,6 +132,7 @@ export function makeStateUpdate(stateChanges: TStateChanges, payment: TPayment[]
         sponsorFees,
         leases,
         leaseCancels,
+        diplomes,
     }
 
     const recursiveFunction = (stateChanges: TStateChanges, sender: string) => {
@@ -165,6 +168,8 @@ export function makeStateUpdate(stateChanges: TStateChanges, payment: TPayment[]
                     )
                     //issues
                     x.stateChanges.issues.forEach(y => stateUpdate.issues.push({...y, address: x.dApp}))
+                    //diplomes
+                    x.stateChanges.diplomes.forEach(y => stateUpdate.diplomes.push({...y, address: x.dApp}))
                     //reissues
                     x.stateChanges.reissues.forEach(y => {
                             const index = stateUpdate.reissues.findIndex(z => z.assetId === y.assetId)

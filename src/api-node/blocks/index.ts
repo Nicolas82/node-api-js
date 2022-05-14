@@ -1,6 +1,6 @@
 import { TLong } from '../../interface';
 import request from '../../tools/request';
-import { Transaction, WithApiMixin } from '@waves/ts-types';
+import { Transaction, WithApiMixin } from '@apsiocoin/ts-types';
 
 /**
  * GET /blocks/headers/seq/{from}/{to}

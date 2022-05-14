@@ -1,7 +1,7 @@
 import create from '../../src';
 import { CHAIN_ID, MASTER_ACCOUNT, NODE_URL, STATE } from '../_state';
 import { libs, transfer } from '@waves/waves-transactions';
-import {SignedTransaction, TransferTransaction, WithId} from '@waves/ts-types';
+import {SignedTransaction, TransferTransaction, WithId} from '@apsiocoin/ts-types';
 import { TLong } from '../../src/interface';
 import { wait } from '../../src/tools/utils';
 import { TRANSACTION_STATUSES } from '../../src/constants';

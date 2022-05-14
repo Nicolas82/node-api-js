@@ -1,6 +1,6 @@
 import { fetchDetails, TAssetDetails } from '../../api-node/assets';
 import getAssetIdListByTx from './getAssetIdListByTx';
-import { Transaction } from '@waves/ts-types';
+import { Transaction } from '@apsiocoin/ts-types';
 import { TLong } from '../../interface';
 import { indexBy, prop } from '../utils';
 

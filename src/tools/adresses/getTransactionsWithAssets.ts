@@ -1,7 +1,7 @@
 import { TAssetDetails } from '../../api-node/assets';
 import { fetchTransactions } from '../../api-node/transactions';
 import getAssetsByTransaction from './getAssetsByTransaction';
-import { Transaction, WithApiMixin } from '@waves/ts-types';
+import { Transaction, WithApiMixin } from '@apsiocoin/ts-types';
 import { TLong } from '../../interface';
 
 

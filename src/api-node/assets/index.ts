@@ -1,5 +1,5 @@
 import {TLong} from '../../interface';
-import {AssetDecimals, IssueTransaction, SignedTransaction, TRANSACTION_TYPE, WithApiMixin} from '@waves/ts-types';
+import {AssetDecimals, IssueTransaction, SignedTransaction, TRANSACTION_TYPE, WithApiMixin} from '@apsiocoin/ts-types';
 import request from '../../tools/request';
 import {toArray} from '../../tools/utils';
 

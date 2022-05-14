@@ -1,7 +1,7 @@
 import { TLong } from '../../interface';
 import request from '../../tools/request';
 import query from '../../tools/query';
-import { DataTransactionEntry } from '@waves/ts-types';
+import { DataTransactionEntry } from '@apsiocoin/ts-types';
 
 
 export function fetchDataKey(base: string, address: string, key: string, options: RequestInit = Object.create(null)): Promise<DataTransactionEntry<TLong>> {
