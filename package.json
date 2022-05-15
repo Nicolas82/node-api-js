@@ -55,7 +55,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "node-state": "https://github.com/Nicolas82/node-state",    
-    "@apsiocoin/apsio-transactions": "^0.0.1",
+    "@apsiocoin/apsio-transactions": "^0.0.3",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.6",
     "ts-loader": "^7.0.5",
